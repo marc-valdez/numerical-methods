@@ -10,20 +10,23 @@ def iqi(f, v, w, x):
     c = ((f(v) * f(w)) / ((f(x) - f(v)) * (f(x) - f(w)))) * x
     return a + b + c
 
-# Certain values of `x` can lead to a division-by-zero (e.g. 3)
-x = 4
-w = 3
-v = 2
-es = 0.001
 
-for i in range(1, 10000):
-    x1 = iqi(f, v, w, x)
-    print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+if __name__ == "__main__":
+    
+    # Certain values of `x` can lead to a division-by-zero (e.g. 3)
+    x = 4
+    w = 3
+    v = 2
+    es = 0.001
 
-    dx = x1 - x
-    tol = abs(dx / x1) * 100
+    for i in range(1, 10000):
+        x1 = iqi(f, v, w, x)
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
 
-    v, w, x = w, x, x1
-    if tol < es:
-        print(f"\nThe root is {x}")
-        break
+        dx = x1 - x
+        tol = abs(dx / x1) * 100
+
+        v, w, x = w, x, x1
+        if tol < es:
+            print(f"\nThe root is {x}")
+            break
