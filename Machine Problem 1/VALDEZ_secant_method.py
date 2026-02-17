@@ -1,26 +1,27 @@
+"""https://en.wikipedia.org/wiki/Secant_method"""
+
 # Define the function of the problem
 def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
 
-# Estimate the derivative function
-def f1(f, x0, x1):
-    a = f(x0) - f(x1)
-    b = x0 - x1
-    return a / b
+# Secant Method
+def secant(f, x0, x1):
+    a = x1 - x0
+    b = f(x1) - f(x0)
+    return x1 - f(x1) * (a / b)
 
 x0 = 1
 x1 = 4
 es = 0.001
 
 for i in range(1, 1000):
-    f1x = f1(f, x0, x1)
-    dx = -(f(x1)/f1x)
+    x2 = secant(f, x0, x1)
+    print(f"Iteration #{i}: x0 = {x0}, x1 = {x1}, x2 = {x2}")
 
-    x0 = x1
-    x1 = x1 + dx
-    print(f"Iteration #{i}: x0 = {x0}, x1 = {x1}")
-    
-    tol = abs(dx / x1) * 100
+    dx = x2 - x1
+    tol = abs(dx / x2) * 100
+
+    x0, x1 = x1, x2
     if tol < es:
-        print(f"\nThe root is {x1}")
+        print(f"\nThe root is {x2}")
         break
