@@ -1,4 +1,6 @@
-"""https://en.wikipedia.org/wiki/Steffensen%27s_method"""
+"""Iterative
+https://en.wikipedia.org/wiki/Steffensen%27s_method
+"""
 
 # Define the function of the problem
 def f(x):

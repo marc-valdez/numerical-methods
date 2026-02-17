@@ -1,3 +1,7 @@
+"""Iterative
+https://en.wikipedia.org/wiki/Fixed-point_iteration
+"""
+
 import math
 
 # Define the function of the problem

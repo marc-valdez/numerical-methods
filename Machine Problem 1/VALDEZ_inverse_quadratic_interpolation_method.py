@@ -1,4 +1,6 @@
-"""https://en.wikipedia.org/wiki/Inverse_quadratic_interpolation"""
+"""Iterative
+https://en.wikipedia.org/wiki/Inverse_quadratic_interpolation
+"""
 
 # Define the function of the problem
 def f(x):

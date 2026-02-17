@@ -1,4 +1,6 @@
-"""https://en.wikipedia.org/wiki/Muller%27s_method"""
+"""Interpolation
+https://en.wikipedia.org/wiki/Muller%27s_method
+"""
 
 import math
 
@@ -7,7 +9,7 @@ def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
 
 # Muller's Method
-def muller(f, x0, x1, x2, es):
+def mullers(f, x0, x1, x2, es):
     for i in range(1, 10000):
         print(f"Iteration #{i}: x0 = {x0}, x1 = {x1}, x2 = {x2}")
 
@@ -36,5 +38,5 @@ if __name__ == "__main__":
     x2 = 4
     es = 0.001
 
-    root = muller(f, x0, x1, x2, es)
+    root = mullers(f, x0, x1, x2, es)
     print(f"\nThe root is {root}")

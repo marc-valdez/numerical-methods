@@ -1,4 +1,6 @@
-"""https://en.wikipedia.org/wiki/Secant_method"""
+"""Interpolation
+https://en.wikipedia.org/wiki/Secant_method
+"""
 
 # Define the function of the problem
 def f(x):

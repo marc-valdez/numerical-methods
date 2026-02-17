@@ -1,4 +1,6 @@
-"""https://en.wikipedia.org/wiki/Brent%27s_method"""
+"""Combination
+https://en.wikipedia.org/wiki/Brent%27s_method
+"""
 
 from VALDEZ_inverse_quadratic_interpolation_method import iqi
 from VALDEZ_secant_method import secant

@@ -1,3 +1,7 @@
+"""Bracketing
+https://en.wikipedia.org/wiki/Bisection_method
+"""
+
 # Define the function of the problem
 def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
