@@ -27,7 +27,7 @@ def brents(a, b, f):
 
         if f(a) != f(c) and f(b) != f(c):
             print("Running Inverse Quadratic Interpolation (IQI) Method")
-            s = iqi(f, a, b, c)
+            s = iqi(a, b, c, f)
         else:
             print("Running Secant Method")
             s = sec(a, b, f)

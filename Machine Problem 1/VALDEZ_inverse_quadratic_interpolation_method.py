@@ -6,23 +6,15 @@ https://en.wikipedia.org/wiki/Inverse_quadratic_interpolation
 def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
 
-def iqi(f, v, w, x):
+def iqi(v, w, x, f):
     a = ((f(w) * f(x)) / ((f(v) - f(w)) * (f(v) - f(x)))) * v
     b = ((f(v) * f(x)) / ((f(w) - f(v)) * (f(w) - f(x)))) * w
     c = ((f(v) * f(w)) / ((f(x) - f(v)) * (f(x) - f(w)))) * x
     return a + b + c
 
-
-if __name__ == "__main__":
-    
-    # Certain values of `x` can lead to a division-by-zero (e.g. 3)
-    x = 4
-    w = 3
-    v = 2
-    es = 0.001
-
-    for i in range(1, 10000):
-        x1 = iqi(f, v, w, x)
+def inverse_quadratic(v, w, x, f, es=0.001, max=1000):
+    for i in range(1, max):
+        x1 = iqi(v, w, x, f)
         print(f"Iteration #{i}: x = {x}, x1 = {x1}")
 
         dx = x1 - x
@@ -30,5 +22,14 @@ if __name__ == "__main__":
 
         v, w, x = w, x, x1
         if tol < es:
-            print(f"\nThe root is {x}")
-            break
+            return x
+
+if __name__ == "__main__":
+    # Certain values of `x` can lead to a division-by-zero (e.g. 3)
+    x = 4
+    w = 3
+    v = 2
+    es = 0.001
+
+    root = inverse_quadratic(v, w, x, f)
+    print(f"\nThe root is {root}")
