@@ -10,18 +10,23 @@ def f(x):
 def f1(x):
     return (4 * pow(x, 3)) - (20 * x)
 
-x = 4
-es = 0.001
+def newton_raphson(x, f, f1, es):
+    for i in range(1, 1000):
+        fx = f(x)
+        f1x = f1(x)
+        dx = -(fx/f1x)
 
-for i in range(1, 500):
-    fx = f(x)
-    f1x = f1(x)
-    dx = -(fx/f1x)
+        x0 = x
+        x = x + dx
+        print(f"Iteration #{i}: x = {x0}, x1 = {x}")
 
-    print(f"Iteration #{i}: x = {x}")
-    x = x + dx
+        tol = abs(dx / x) * 100
+        if tol < es:
+            return x
 
-    tol = abs(dx / x) * 100
-    if tol < es:
-        print(f"\nThe root is {x}")
-        break
+if __name__ == "__main__":
+    x = 3
+    es = 0.001
+
+    root = newton_raphson(x, f, f1, es)
+    print(f"\nThe root is {root}")
