@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Brent%27s_method
 """
 
 from VALDEZ_inverse_quadratic_interpolation_method import iqi
-from VALDEZ_secant_method import secant
+from VALDEZ_secant_method import sec
 
 # Define the function of the problem
 def f(x):
@@ -30,7 +30,7 @@ def brents(a, b, f):
             s = iqi(f, a, b, c)
         else:
             print("Running Secant Method")
-            s = secant(f, a, b)
+            s = sec(a, b, f)
         
         cond1 = s < (3 * a + b) / 4 or s > b
         cond2 = mflag == True and abs(s-b) >= abs(b-c)/2
