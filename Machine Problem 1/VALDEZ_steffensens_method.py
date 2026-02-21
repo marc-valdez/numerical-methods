@@ -6,17 +6,21 @@ https://en.wikipedia.org/wiki/Steffensen%27s_method
 def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
 
-# First-order divided difference of `f()`
-def g(x, f):
-    fx = f(x)
-    return (f(x + fx) / fx) - 1
+# First-order divided difference of `f(x)`
+def g(x, f, fx):
+    return f(x + fx) / fx - 1
 
 # Steffensen's Method
 def steffensen(x, f, g, es=0.001, max=10000):
-    # Some starting values of `x` requires more than 500 iterations to complete (e.g. 4)
     for i in range(1, max):
-        x1 = x - (f(x) / g(x, f))
-        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+        fx = f(x)
+        gx = g(x, f, fx)
+
+        if not -1 > gx > 0:
+            print(f"\n[WARN] Condition not met: -1 > {gx:.2f} > 0. Convergence may be slow.\n")
+
+        x1 = x - (fx / gx)
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}, g(x) = {gx}")
 
         dx = x1 - x
         tol = abs(dx / x1) * 100
@@ -26,7 +30,7 @@ def steffensen(x, f, g, es=0.001, max=10000):
             return x
 
 if __name__ == "__main__":
-    x = 4
+    x = 3
     es = 0.001
 
     root = steffensen(x, f, g, es)
