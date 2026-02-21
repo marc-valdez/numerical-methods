@@ -14,23 +14,23 @@ def f1(x):
 def f2(x):
     return (12 * pow(x, 2)) - 20
 
-# Halley's Method
-def halley(x, f, f1, f2):
-    a = 2 * f(x) * f1(x)
-    b = (2 * pow(f1(x), 2)) - f(x) * f2(x)
-    return x - (a / b)
+def halley(x, f, f1, f2, es):
+    for i in range(1, 1000):   
+        a = 2 * f(x) * f1(x)
+        b = (2 * pow(f1(x), 2)) - f(x) * f2(x)
+        x1 = x - (a / b)
 
-x = 4
-es = 0.001
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+        dx = x1 - x
+        x = x1
 
-for i in range(1, 500):
-    x1 = halley(x, f, f1, f2)
-    print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+        tol = abs(dx / x) * 100
+        if tol < es:
+            return x
 
-    dx = x1 - x
-    tol = abs(dx / x1) * 100
-    
-    x = x1
-    if tol < es:
-        print(f"\nThe root is {x}")
-        break
+if __name__ == "__main__":
+    x = 3
+    es = 0.001
+
+    root = halley(x, f, f1, f2, es)
+    print(f"\nThe root is {root}")
