@@ -12,21 +12,22 @@ def g(x, f):
     return (f(x + fx) / fx) - 1
 
 # Steffensen's Method
-def steffensen(x, f, g):
-    return x - (f(x) / g(x, f))
+def steffensen(x, f, g, es=0.001, max=10000):
+    # Some starting values of `x` requires more than 500 iterations to complete (e.g. 4)
+    for i in range(1, max):
+        x1 = x - (f(x) / g(x, f))
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
 
-# Some starting values of `x` requires more than 500 iterations to complete (e.g. 4)
-x = 4
-es = 0.001
+        dx = x1 - x
+        tol = abs(dx / x1) * 100
 
-for i in range(1, 10000):
-    x1 = steffensen(x, f, g)
-    print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+        x = x1
+        if tol < es:
+            return x
 
-    dx = x1 - x
-    tol = abs(dx / x1) * 100
+if __name__ == "__main__":
+    x = 4
+    es = 0.001
 
-    x = x1
-    if tol < es:
-        print(f"\nThe root is {x}")
-        break
+    root = steffensen(x, f, g, es)
+    print(f"\nThe root is {root}")
