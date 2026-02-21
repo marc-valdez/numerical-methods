@@ -9,9 +9,7 @@ from VALDEZ_secant_method import sec
 def f(x):
     return (pow(x, 4)) - (10 * (pow(x, 2))) + 1
 
-ε = 0.001
-δ = 1e-10
-def brents(a, b, f):
+def brents(a, b, f, ε=0.001, δ=1e-10):
     if f(a) * f(b) >= 0:
         return
     
@@ -59,7 +57,6 @@ def brents(a, b, f):
             break
     
     return b if abs(f(b)) <= abs(f(s)) else s
-
 
 if __name__ == "__main__":
     a = 3
