@@ -14,12 +14,20 @@ def g(x):
     # return pow(((10 * pow(x, 2)) - 1), 1/4)           # imaginary lmao
     return math.sqrt((pow(x, 4) + 1) / 10)
 
-x0 = 0
-es = 0.001
-for i in range(1, 500):
-    x1 = g(x0)
-    tol = (abs(x1 - x0) / x1) * 100
-    x0 = x1
-    if tol < es:
-        print(f"[Iteration #{i}] x = {x1}")
-        break
+def fixed_point(x, g, es=0.001, max=1000):
+    for i in range(1, max):
+        x1 = g(x)
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+
+        tol = (abs(x1 - x) / x1) * 100
+        if tol < es:
+            return x
+        
+        x = x1
+
+if __name__ == "__main__":
+    x = 0
+    es = 0.001
+
+    root = fixed_point(x, g)
+    print(f"\nThe root is {root}")
