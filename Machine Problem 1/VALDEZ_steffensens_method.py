@@ -24,10 +24,10 @@ def steffensen(x, f, g, es=0.001, max=10000):
 
         dx = x1 - x
         tol = abs(dx / x1) * 100
-
-        x = x1
         if tol < es:
             return x
+
+        x = x1
 
 if __name__ == "__main__":
     x = 3

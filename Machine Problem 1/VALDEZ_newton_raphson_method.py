@@ -15,14 +15,15 @@ def newton_raphson(x, f, f1, es):
         fx = f(x)
         f1x = f1(x)
         dx = -(fx/f1x)
+        x1 = x + dx
 
-        x0 = x
-        x = x + dx
-        print(f"Iteration #{i}: x = {x0}, x1 = {x}")
+        print(f"Iteration #{i}: x = {x}, x1 = {x1}")
 
         tol = abs(dx / x) * 100
         if tol < es:
             return x
+        
+        x = x1
 
 if __name__ == "__main__":
     x = 3

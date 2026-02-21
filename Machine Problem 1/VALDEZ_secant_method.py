@@ -19,10 +19,10 @@ def secant(x0, x1, f, es=0.001):
 
         dx = x2 - x1
         tol = abs(dx / x2) * 100
-
-        x0, x1 = x1, x2
         if tol < es:
             return x2
+        
+        x0, x1 = x1, x2
 
 if __name__ == "__main__":
     x0 = 3

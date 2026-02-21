@@ -21,12 +21,13 @@ def halley(x, f, f1, f2, es):
         x1 = x - (a / b)
 
         print(f"Iteration #{i}: x = {x}, x1 = {x1}")
+        
         dx = x1 - x
-        x = x1
-
         tol = abs(dx / x) * 100
         if tol < es:
             return x
+        
+        x = x1
 
 if __name__ == "__main__":
     x = 3

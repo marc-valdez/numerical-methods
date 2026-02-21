@@ -20,10 +20,11 @@ def inverse_quadratic(v, w, x, f, es=0.001, max=1000):
         dx = x1 - x
         tol = abs(dx / x1) * 100
 
-        v, w, x = w, x, x1
         if tol < es:
             return x
 
+        v, w, x = w, x, x1
+        
 if __name__ == "__main__":
     # Certain values of `x` can lead to a division-by-zero (e.g. 3)
     x = 4
