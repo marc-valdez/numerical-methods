@@ -18,6 +18,30 @@ def composite_trapezoidal_rule(f, a, b, n):
     return result * h
 
 
+def composite_simpson_rule(f, a, b, n):
+    """
+    Approximates the definite integral of f(x) from a to b using the composite Simpson's rule with n subintervals (n must be even).
+
+    Parameters:
+        f (function): The function to integrate.
+        a (float): The lower limit of integration.
+        b (float): The upper limit of integration.
+        n (int): The number of subintervals (must be even).
+
+    Returns:
+        float: Approximate value of the integral.
+    """
+    if n % 2 != 0:
+        raise ValueError("n must be even for Simpson's rule.")
+    h = (b - a) / n
+    result = f(a) + f(b)
+    for i in range(1, n, 2):
+        result += 4 * f(a + i * h)
+    for i in range(2, n, 2):
+        result += 2 * f(a + i * h)
+    return result * h / 3
+
+
 if __name__ == "__main__":
 
     def f(x):
@@ -25,7 +49,13 @@ if __name__ == "__main__":
 
     a = 0
     b = 2
-    n = 1000
+    n = 4
 
     approx = composite_trapezoidal_rule(f, a, b, n)
     print(f"Composite Trapezoidal Rule: {approx}")
+
+    # Simpson's rule (n must be even)
+    if n % 2 != 0:
+        n += 1
+    approx_simpson = composite_simpson_rule(f, a, b, n)
+    print(f"Composite Simpson's Rule: {approx_simpson}")
